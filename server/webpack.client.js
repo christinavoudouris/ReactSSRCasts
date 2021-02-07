@@ -1,5 +1,5 @@
-const path = require('path');
-const merge = require('webpack-merge');
+const path = require('path')
+const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.js');
 
 const config = {
@@ -13,6 +13,6 @@ const config = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public')
   }
-};
+}
 
-module.exports = merge(baseConfig, config);
+module.exports = merge(baseConfig, config)

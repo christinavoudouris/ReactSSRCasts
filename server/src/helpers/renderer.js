@@ -1,12 +1,28 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import Home from '../client/components/Home'
+/*import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
 import { Helmet } from 'react-helmet';
-import Routes from '../client/Routes';
+import Routes from '../client/Routes';*/
 
+export default () => {
+  const content = renderToString(<Home />)
+
+  return `
+  <html>
+    <head></head>
+    <body>
+      <div id="root">${content}</div>
+      <script src="bundle.js"></script>
+    </body>
+  </html>
+  `
+}
+
+/*
 export default (req, store, context) => {
   const content = renderToString(
     <Provider store={store}>
@@ -35,3 +51,4 @@ export default (req, store, context) => {
     </html>
   `;
 };
+*/
