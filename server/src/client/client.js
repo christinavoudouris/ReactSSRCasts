@@ -2,19 +2,22 @@
 //import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Home from './components/Home'
+import { BrowserRouter } from 'react-router-dom'
+import Routes from './Routes'
 /*
-import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import axios from 'axios';
-import Routes from './Routes';
 import reducers from './reducers';
 */
 
-ReactDOM.hydrate(<Home />, document.querySelector('#root'))
+ReactDOM.hydrate(<BrowserRouter>
+<Routes />
+</BrowserRouter>, 
+document.querySelector('#root'))
+
 /*
 const axiosInstance = axios.create({
   baseURL: '/api'

@@ -1,12 +1,6 @@
 // import 'babel-polyfill'
 import express from 'express'
-/* 
-import React from 'react'
-// const renderToString = require('react-dom/server').renderToString
-import { renderToString } from 'react-dom/server'
-import Home from './client/components/Home'
-*/
-
+// import React from 'react'
 // import { matchRoutes } from 'react-router-config'
 // import proxy from 'express-http-proxy'
 // import Routes from './client/Routes'
@@ -16,24 +10,6 @@ import renderer from './helpers/renderer'
 const app = express()
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  // moved to helpers/renderer.js
-  /*const content = renderToString(<Home />)
-
-  const html = `
-  <html>
-    <head></head>
-    <body>
-      <div id="root">${content}</div>
-      <script src="bundle.js"></script>
-    </body>
-  </html>
-  `*/
-
-  // res.send(html)
-  res.send(renderer())
-})
-
 /*app.use(
   '/api',
   proxy('http://react-ssr-api.herokuapp.com', {
@@ -42,10 +18,12 @@ app.get('/', (req, res) => {
       return opts;
     }
   })
-);
+);*/
 
 app.get('*', (req, res) => {
-  const store = createStore(req);
+  res.send(renderer(req))
+  
+  /*const store = createStore(req);
 
   const promises = matchRoutes(Routes, req.path)
     .map(({ route }) => {
@@ -56,10 +34,10 @@ app.get('*', (req, res) => {
         return new Promise((resolve, reject) => {
           promise.then(resolve).catch(resolve);
         });
-      }
-    });
+      }*/
+    })
 
-  Promise.all(promises).then(() => {
+  /*Promise.all(promises).then(() => {
     const context = {};
     const content = renderer(req, store, context);
 
@@ -75,5 +53,5 @@ app.get('*', (req, res) => {
 });*/
 
 app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+  console.log('Listening on port 3000')
+})
