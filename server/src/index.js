@@ -25,28 +25,31 @@ app.get('*', (req, res) => {
     .map(({ route }) => {
       return route.loadData ? route.loadData(store) : null
     })
-    /*.map(promise => {
+    .map(promise => {
       if (promise) {
         return new Promise((resolve, reject) => {
-          promise.then(resolve).catch(resolve);
-        })
-      }*/
+        promise.then(resolve).catch(resolve)
+      })
+    }
+  })
 
   Promise.all(promises).then(() => {
-    /*const context = {};
+    const context = {}
     const content = renderer(req, store, context);
 
+    // console.log(context)
     if (context.url) {
-      return res.redirect(301, context.url);
+      return res.redirect(301, context.url)
     }
     if (context.notFound) {
-      res.status(404);
-    }*/
+      res.status(404)
+    }
 
-    // res.send(content);
-    res.send(renderer(req, store))
+    // res.send(renderer(req, store, context))
+    res.send(content)
+    // not a good approach, just shows an error occured
+    })// .catch(() => res.send('Something went wrong!'))
   })
-})
 
 app.listen(3000, () => {
   console.log('Listening on port 3000')

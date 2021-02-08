@@ -5,21 +5,23 @@ import { Provider } from 'react-redux'
 import Routes from '../client/Routes'
 import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
-// import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
-export default (req, store/*, context*/) => {
+export default (req, store, context) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.path} context={{/*context*/}}>
+      <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>)
 
-// const helmet = Helmet.renderStatic()
+const helmet = Helmet.renderStatic()
   return `
     <html>
       <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
       </head>
       <body>
         <div id="root">${content}</div>
@@ -28,8 +30,4 @@ export default (req, store/*, context*/) => {
       </body>
     </html>
   `
-
-  // goes inside head
-  {/*${helmet.title.toString()}
-  ${helmet.meta.toString()}*/}
 }
