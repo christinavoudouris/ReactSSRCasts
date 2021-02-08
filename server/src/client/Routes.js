@@ -1,8 +1,7 @@
 import React from 'react'
 // import App from './App'
-import Home from './components/Home'
-import UsersList, { loadData } from './components/UsersList'
-// import UsersListPage from './pages/UsersListPage'
+import HomePage from './pages/HomePage'
+import UsersListPage from './pages/UsersListPage'
 // import NotFoundPage from './pages/NotFoundPage'
 // import AdminsListPage from './pages/AdminsListPage'
 
@@ -11,9 +10,9 @@ export default [
     ...App,
     routes: [*/
       {
-        // ...Home,
+        ...HomePage,
         path: '/',
-        component: Home,
+        // component: HomePage,
         exact: true
       },
       /*{
@@ -21,10 +20,10 @@ export default [
         path: '/admins'
       },*/
       {
-        loadData,
-        // ...UsersListPage,
+        // loadData,
+        ...UsersListPage,
         path: '/users',
-        component: UsersList
+        // component: UsersListPage
       },
       /*{
         ...NotFoundPage

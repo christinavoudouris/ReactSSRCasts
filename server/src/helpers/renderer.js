@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Routes from '../client/Routes'
 import { renderRoutes } from 'react-router-config'
-// import serialize from 'serialize-javascript'
+import serialize from 'serialize-javascript'
 // import { Helmet } from 'react-helmet'
 
 export default (req, store/*, context*/) => {
@@ -21,6 +21,7 @@ export default (req, store/*, context*/) => {
       <head></head>
       <body>
         <div id="root">${content}</div>
+        <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
         <script src="bundle.js"></script>
       </body>
     </html>
@@ -30,7 +31,4 @@ export default (req, store/*, context*/) => {
   {/*${helmet.title.toString()}
   ${helmet.meta.toString()}*/}
   // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
-
-  // goes above bundle.js
-  // <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
 }
