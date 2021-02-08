@@ -18,7 +18,9 @@ export default (req, store/*, context*/) => {
 // const helmet = Helmet.renderStatic()
   return `
     <html>
-      <head></head>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      </head>
       <body>
         <div id="root">${content}</div>
         <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
@@ -30,5 +32,4 @@ export default (req, store/*, context*/) => {
   // goes inside head
   {/*${helmet.title.toString()}
   ${helmet.meta.toString()}*/}
-  // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
 }

@@ -3,25 +3,23 @@ import express from 'express'
 // import React from 'react'
 import { matchRoutes } from 'react-router-config'
 import Routes from './client/Routes'
-// import proxy from 'express-http-proxy'
+import proxy from 'express-http-proxy'
 import renderer from './helpers/renderer'
 import createStore from './helpers/createStore'
 
 const app = express()
 app.use(express.static('public'))
 
-/*app.use(
-  '/api',
-  proxy('http://react-ssr-api.herokuapp.com', {
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
     proxyReqOptDecorator(opts) {
-      opts.headers['x-forwarded-host'] = 'localhost:3000';
-      return opts;
+      opts.headers['x-forwarded-host'] = 'localhost:3000'
+      return opts
     }
   })
-);*/
+)
 
 app.get('*', (req, res) => {
-  const store = createStore()
+  const store = createStore(req)
 
   const promises = matchRoutes(Routes, req.path)
     .map(({ route }) => {
