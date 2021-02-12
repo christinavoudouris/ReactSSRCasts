@@ -1,4 +1,5 @@
-import 'babel-polyfill'
+import "core-js"
+import "regenerator-runtime/runtime"
 import express from 'express'
 // import React from 'react'
 import { matchRoutes } from 'react-router-config'
